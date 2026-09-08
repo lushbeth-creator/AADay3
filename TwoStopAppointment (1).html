@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Day 3 | The Two-Stop Appointment</title>
+<style>
+:root{--blue:#5D70AE;--green:#59A398;--purple:#A6B3D5;--pale:#F3F6FF;--ink:#26324b;--muted:#647087;--white:#fff;--line:#dce3ed;--shadow:0 18px 50px rgba(45,58,94,.12)}
+*{box-sizing:border-box}
+button{font:inherit}
+body{margin:0;color:var(--ink);font-family:Inter,Aptos,"Segoe UI",Arial,sans-serif;background:transparent;line-height:1.55}
+.shell{max-width:1180px;margin:auto;padding:0 28px}
+h2{font-family:Inter,Aptos,"Segoe UI",sans-serif;line-height:1.08;margin:0;font-size:clamp(2rem,4vw,3.3rem);letter-spacing:-.035em}
+h3{font-family:Inter,Aptos,"Segoe UI",sans-serif;margin:0}
+p{margin:.55rem 0}
+.muted{color:var(--muted)}
+.tag{display:inline-flex;padding:6px 10px;border-radius:99px;background:var(--pale);color:var(--blue);font-weight:750;font-size:.78rem}
+.tag-green{background:#59A398;color:#ffffff}
+section{padding:56px 0}
+.section-head{display:grid;grid-template-columns:.8fr 1.2fr;gap:40px;align-items:end;margin-bottom:36px}
+.section-head p{font-size:1.04rem;color:var(--muted);max-width:660px}
+.two-stop{display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:stretch}
+.stop{border-radius:28px;padding:30px;background:linear-gradient(135deg,#ffffff 0%,#E4E9F7 100%);border:1px solid var(--line);box-shadow:var(--shadow)}
+.stop.decision{background:var(--ink);color:white}
+.agenda{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:22px}
+.agenda button{border:none;padding:13px 6px;border-radius:14px;background:var(--pale);font-size:.84rem;font-weight:750;text-align:center;color:var(--blue);cursor:pointer;transition:.2s}
+.agenda button.active{background:var(--blue);color:white}
+.decision .agenda button{background:rgba(255,255,255,.09);color:white}
+.decision .agenda button.active{background:var(--green);color:white}
+.agenda-detail{margin-top:16px;padding:14px 16px;border-radius:14px;background:var(--pale);font-size:.88rem;color:var(--ink);min-height:66px}
+.decision .agenda-detail{background:rgba(255,255,255,.09);color:#eef1ff}
+.question-bank{margin-top:24px;border-radius:24px;background:linear-gradient(90deg,var(--light,#DAF3EF),#fff);padding:25px}
+.question-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px}
+.question-tabs button{border:0;border-radius:99px;padding:9px 14px;background:white;color:var(--ink);cursor:pointer;font-weight:750}
+.question-tabs button.active{background:var(--green);color:white}
+.question{font-size:1.28rem;font-weight:700;min-height:66px}
+.question small{display:block;font-size:.8rem;color:var(--muted);margin-top:8px;font-weight:500}
+.coach-cue{margin-top:18px;border-left:5px solid var(--green);border-radius:0 18px 18px 0;background:white;padding:18px 20px;box-shadow:0 8px 25px rgba(45,58,94,.07)}
+.coach-cue b{display:block;color:#397d77;margin-bottom:4px}
+.coach-cue p{margin:0;color:var(--muted)}
+@media(max-width:850px){.section-head{grid-template-columns:1fr}.two-stop{grid-template-columns:1fr}.agenda{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.agenda{grid-template-columns:1fr}}
+.reveal{opacity:0;transform:translateY(14px);transition:.55s}
+.reveal.show{opacity:1;transform:none}
+</style>
+</head>
+<body>
+<section id="discover"><div class="shell">
+  <div class="section-head reveal"><div><h2>Discover before you prescribe.</h2></div><p>Discovery and decision serve different purposes. Separating them gives you time to understand the business, verify the facts and recommend with confidence.</p></div>
+  <div class="two-stop reveal">
+    <article class="stop">
+      <span class="tag">Discovery &middot; about 30 minutes</span>
+      <h3 style="font-size:1.55rem;margin-top:14px">Understand the business</h3>
+      <p class="muted">Select a stage to see what it means.</p>
+      <div class="agenda" id="discAgenda">
+        <button class="active" data-detail="rapport">Building Rapport</button>
+        <button data-detail="agenda">Setting the Agenda</button>
+        <button data-detail="factfind">Fact Finding</button>
+        <button data-detail="nextsteps">Confirm Next Steps</button>
+      </div>
+      <p class="agenda-detail" id="discDetail">Open with genuine interest in the business before payments come up. A few minutes of real connection makes every question that follows easier to answer honestly.</p>
+    </article>
+    <article class="stop decision">
+      <span class="tag" style="background:rgba(255,255,255,.14);color:white">Decision &middot; about 40 minutes</span>
+      <h3 style="font-size:1.55rem;margin-top:14px">Connect needs to a solution</h3>
+      <p style="color:#c9d0df">Select a stage to see what it means.</p>
+      <div class="agenda" id="decAgenda">
+        <button class="active" data-detail="recap">Recap</button>
+        <button data-detail="recommend">Recommend</button>
+        <button data-detail="resolve">Resolve</button>
+        <button data-detail="decide">Decide</button>
+      </div>
+      <p class="agenda-detail" id="decDetail">Play back what you heard in discovery so the merchant knows nothing was lost, and that today's recommendation is built on their words, not a script.</p>
+    </article>
+  </div>
+
+  <div class="question-bank reveal"><span class="tag tag-green">Discovery toolkit</span><h3 style="margin:12px 0 4px">Questions worth asking</h3><p class="muted" style="margin:0 0 18px">Pick a lens to see a strong discovery question and what to listen for in the answer.</p><div class="question-tabs"><button class="active" data-question="business">Business</button><button data-question="experience">Experience</button><button data-question="risk">Risk</button><button data-question="decision">Decision path</button></div><div class="question" id="question">"Walk me through how a payment moves through your business today."<small>Listen for channels, devices, software, roles, bottlenecks and customer experience.</small></div></div>
+  <div class="coach-cue reveal"><b>Coach the listening</b><p>Ask: "What did you hear that the merchant did not state directly?" Strong discovery captures facts, emotion and implications without turning the conversation into an interrogation.</p></div>
+</div></section>
+<script>
+const discoveryDetails={
+  rapport:"Open with genuine interest in the business before payments come up. A few minutes of real connection makes every question that follows easier to answer honestly.",
+  agenda:"State the purpose, expected time, and what you hope to walk away with, so the merchant knows what's coming and can engage fully.",
+  factfind:"Ask far more than you tell. Uncover how the business actually runs today, volume, channels, pain points, and what's already been tried.",
+  nextsteps:"Recap what you heard and agree on exactly what happens next, and by when, before you leave the building."
+};
+const decisionDetails={
+  recap:"Play back what you heard in discovery so the merchant knows nothing was lost, and that today's recommendation is built on their words, not a script.",
+  recommend:"Show only what maps to a need they actually named. Skip the feature tour; present the specific fit.",
+  resolve:"Surface any remaining hesitation directly and work through it, rather than talking past it.",
+  decide:"Ask directly for the decision. A meeting that ends without an ask rarely turns into a deal."
+};
+document.querySelectorAll('#discAgenda button').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('#discAgenda button').forEach(x=>x.classList.remove('active'));b.classList.add('active');document.getElementById('discDetail').textContent=discoveryDetails[b.dataset.detail]}));
+document.querySelectorAll('#decAgenda button').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('#decAgenda button').forEach(x=>x.classList.remove('active'));b.classList.add('active');document.getElementById('decDetail').textContent=decisionDetails[b.dataset.detail]}));
+
+const questions={business:['\u201cWalk me through how a payment moves through your business today.\u201d','Listen for channels, devices, software, roles, bottlenecks and customer experience.'],experience:['\u201cWhat works well today, and where does your team lose time?\u201d','Listen for service, reporting, reconciliation, deposits, equipment and training.'],risk:['\u201cHow do disputes, fraud or outages affect the business when they happen?\u201d','Listen for exposure, response process, ownership and the operational cost of disruption.'],decision:['\u201cWho else needs to be confident in the decision, and what will matter most to them?\u201d','Identify the decision-maker, influencers, criteria, roadblocks and realistic timeline.']};
+document.querySelectorAll('[data-question]').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('[data-question]').forEach(x=>x.classList.remove('active'));b.classList.add('active');const q=questions[b.dataset.question];document.getElementById('question').innerHTML=q[0]+'<small>'+q[1]+'</small>'}));
+
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('show')}),{threshold:.08});
+document.querySelectorAll('.reveal').forEach(e=>io.observe(e));
+</script>
+</body>
+</html>
