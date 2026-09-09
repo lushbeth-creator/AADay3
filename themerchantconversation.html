@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Day 3 | The Merchant Conversation</title>
+<style>
+:root{--blue:#5D70AE;--green:#59A398;--navy:#1B2F5B;--purple:#A6B3D5;--pale:#F3F6FF;--ink:#26324b;--muted:#647087;--white:#fff;--line:#dce3ed}
+*{box-sizing:border-box}
+button{font:inherit}
+body{margin:0;color:var(--ink);font-family:Inter,Aptos,"Segoe UI",Arial,sans-serif;background:transparent;line-height:1.55}
+.shell{max-width:1180px;margin:auto;padding:0 28px}
+h3{font-family:Inter,Aptos,"Segoe UI",sans-serif;margin:0}
+p{margin:.55rem 0}
+.muted{color:var(--muted)}
+.tag{display:inline-block;color:#59A398;font-weight:800;font-size:.8rem;letter-spacing:.1em;text-transform:uppercase}
+section{padding:20px 0 56px;background:transparent}
+.section-head{margin-bottom:24px}
+.section-head p{font-size:1.04rem;color:var(--muted)}
+.two-stop{display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:stretch}
+.stop{border-radius:28px;padding:30px;background:linear-gradient(135deg,#ffffff 0%,#E4E9F7 100%);border:1px solid var(--line)}
+.stop.decision{background:linear-gradient(135deg,#ffffff 0%,#E4E9F7 100%)}
+.stop.decision h3{color:var(--navy)}
+.agenda{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:22px}
+.agenda button{border:1px solid var(--line);padding:13px 6px;border-radius:14px;background:var(--pale);font-size:.84rem;font-weight:750;text-align:center;color:var(--blue);cursor:pointer;transition:.2s}
+.agenda button.active{background:var(--green);color:white;border-color:var(--green)}
+.agenda-detail{margin-top:16px;padding:14px 16px;border-radius:14px;border:1px solid var(--line);background:var(--pale);font-size:.88rem;color:var(--ink);min-height:66px}
+.toolkit-note{margin-top:20px;border:1px solid var(--line);border-radius:16px;background:linear-gradient(135deg,#ffffff 0%,#DAF3EF 100%);padding:14px 20px}
+.toolkit-note p{margin:2px 0 0;color:var(--muted)}
+.toolkit-links{display:flex;gap:20px;flex-wrap:wrap;margin-top:10px}
+.toolkit-links a{color:var(--blue);font-weight:750;font-size:.9rem;text-decoration:none}
+.toolkit-links a:hover{color:var(--green);text-decoration:underline}
+@media(max-width:850px){.two-stop{grid-template-columns:1fr}.agenda{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.agenda{grid-template-columns:1fr}}
+.reveal{opacity:0;transform:translateY(14px);transition:.55s}
+.reveal.show{opacity:1;transform:none}
+</style>
+</head>
+<body>
+<section id="discover"><div class="shell">
+  <div class="section-head reveal"><p>Discovery and decision serve different purposes. Separating them gives you time to understand the business, verify the facts and recommend with confidence.</p></div>
+  <div class="two-stop reveal">
+    <article class="stop">
+      <span class="tag">Discovery &middot; about 30 minutes</span>
+      <h3 style="font-size:1.55rem;margin-top:14px">Understand the business</h3>
+      <p class="muted">Select a stage to see what it means.</p>
+      <div class="agenda" id="discAgenda">
+        <button class="active" data-detail="rapport">Building Rapport</button>
+        <button data-detail="agenda">Setting the Agenda</button>
+        <button data-detail="factfind">Fact Finding</button>
+        <button data-detail="nextsteps">Confirm Next Steps</button>
+      </div>
+      <p class="agenda-detail" id="discDetail">Open with genuine interest in the business before payments come up. A few minutes of real connection makes every question that follows easier to answer honestly.</p>
+    </article>
+    <article class="stop decision">
+      <span class="tag">Decision &middot; about 40 minutes</span>
+      <h3 style="font-size:1.55rem;margin-top:14px">Connect needs to a solution</h3>
+      <p class="muted">Select a stage to see what it means.</p>
+      <div class="agenda" id="decAgenda">
+        <button class="active" data-detail="recap">Recap</button>
+        <button data-detail="recommend">Recommend</button>
+        <button data-detail="resolve">Resolve</button>
+        <button data-detail="decide">Decide</button>
+      </div>
+      <p class="agenda-detail" id="decDetail">Play back what you heard in discovery so the merchant knows nothing was lost, and that today's recommendation is built on their words, not a script.</p>
+    </article>
+  </div>
+  <div class="toolkit-note reveal"><span class="tag">Discovery toolkit</span><p>Come prepared with a few strong questions for each conversation, business operations, day-to-day experience, risk exposure and who else needs to be confident in the decision.</p><div class="toolkit-links"><a href="https://propelrpay1.sharepoint.com/sites/AviatorLD/Shared%20Documents/Forms/AllItems.aspx?id=%2Fsites%2FAviatorLD%2FShared%20Documents%2FMerchant%20Checklist%2Epdf&parent=%2Fsites%2FAviatorLD%2FShared%20Documents&p=true&ga=1" target="_blank" rel="noopener">Merchant Checklist &rarr;</a><a href="https://propelrpay1.sharepoint.com/sites/AviatorLD/Shared%20Documents/Forms/AllItems.aspx?id=%2Fsites%2FAviatorLD%2FShared%20Documents%2FCustomer%20Profile%2Epdf&parent=%2Fsites%2FAviatorLD%2FShared%20Documents&p=true&ga=1" target="_blank" rel="noopener">Customer Profile &rarr;</a></div></div>
+</div></section>
+<script>
+const discoveryDetails={
+  rapport:"Open with genuine interest in the business before payments come up. A few minutes of real connection makes every question that follows easier to answer honestly.",
+  agenda:"State the purpose, expected time, and what you hope to walk away with, so the merchant knows what's coming and can engage fully.",
+  factfind:"Ask far more than you tell. Uncover how the business actually runs today, volume, channels, pain points, and what's already been tried.",
+  nextsteps:"Recap what you heard and agree on exactly what happens next, and by when, before you leave the building."
+};
+const decisionDetails={
+  recap:"Play back what you heard in discovery so the merchant knows nothing was lost, and that today's recommendation is built on their words, not a script.",
+  recommend:"Show only what maps to a need they actually named. Skip the feature tour; present the specific fit.",
+  resolve:"Surface any remaining hesitation directly and work through it, rather than talking past it.",
+  decide:"Ask directly for the decision. A meeting that ends without an ask rarely turns into a deal."
+};
+document.querySelectorAll('#discAgenda button').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('#discAgenda button').forEach(x=>x.classList.remove('active'));b.classList.add('active');document.getElementById('discDetail').textContent=discoveryDetails[b.dataset.detail]}));
+document.querySelectorAll('#decAgenda button').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('#decAgenda button').forEach(x=>x.classList.remove('active'));b.classList.add('active');document.getElementById('decDetail').textContent=decisionDetails[b.dataset.detail]}));
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('show')}),{threshold:.08});
+document.querySelectorAll('.reveal').forEach(e=>io.observe(e));
+</script>
+</body>
+</html>
