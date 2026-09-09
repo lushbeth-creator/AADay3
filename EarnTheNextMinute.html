@@ -7,7 +7,7 @@
 <style>
 :root{--blue:#5D70AE;--green:#59A398;--navy:#1B2F5B;--pale:#F3F6FF;--ink:#26324b;--muted:#647087;--line:#dce3ed}
 *{box-sizing:border-box}
-body{margin:0;color:var(--ink);font-family:Inter,Aptos,"Segoe UI",Arial,sans-serif;background:#fbfcff;line-height:1.55}
+body{margin:0;color:var(--ink);font-family:Inter,Aptos,"Segoe UI",Arial,sans-serif;background:transparent;line-height:1.55}
 .shell{max-width:1180px;margin:auto;padding:0 28px}
 h2{font-family:Inter,Aptos,"Segoe UI",sans-serif;line-height:1.08;margin:0;font-size:clamp(2rem,4vw,3.3rem);letter-spacing:-.035em}
 p{margin:.55rem 0}
@@ -19,7 +19,7 @@ section{padding:56px 0;background:transparent}
 .pitch-lab{display:grid;grid-template-columns:.72fr 1.28fr;gap:24px}
 .pitch-rail{display:grid;gap:10px}
 /* Styled to match the Focused Routes card: rounded, white, boxed shadow */
-.pitch-step{width:100%;text-align:left;border:1px solid var(--line);background:white;border-radius:24px;padding:24px;cursor:pointer;color:var(--ink);box-shadow:0 8px 28px rgba(45,58,94,.06);transition:.2s}
+.pitch-step{width:100%;text-align:left;border:1px solid var(--line);background:linear-gradient(135deg,#ffffff 0%,#E4E9F7 100%);border-radius:24px;padding:24px;cursor:pointer;color:var(--ink);box-shadow:0 8px 28px rgba(45,58,94,.06);transition:.2s}
 .pitch-step b{display:block;color:var(--navy);margin-bottom:6px;font-size:1.15rem}
 .pitch-step small{color:var(--muted);font-size:1rem}
 .pitch-step.active{border-color:var(--blue);box-shadow:0 8px 20px rgba(93,112,174,.18);transform:translateX(5px)}
